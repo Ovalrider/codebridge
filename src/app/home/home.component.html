@@ -1,0 +1,10 @@
+<form [formGroup] = "searchForm" (ngSubmit)="onFormSubmit()">
+    <mat-form-field >
+        <mat-icon matIconPrefix>search</mat-icon>
+        <input matInput type="search" placeholder="search here" class="search-input" formControlName="searchValue">
+    </mat-form-field>
+</form>
+<div class="container" *ngFor="let article of news!.results" >
+    <app-article [article]="article" *ngIf="this.dataLoaded"></app-article>
+</div>
+
