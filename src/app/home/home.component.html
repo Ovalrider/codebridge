@@ -4,7 +4,11 @@
         <input matInput type="search" placeholder="search here" class="search-input" formControlName="searchValue">
     </mat-form-field>
 </form>
-<div class="container" *ngFor="let article of news!.results" >
-    <app-article [article]="article" *ngIf="this.dataLoaded"></app-article>
+<button (click)="toConsole()"> Click Me</button>
+<div *ngIf="news">
+    <div class="container"  *ngFor="let article of news!.results" >
+        <app-article [article]="article"></app-article>
+    </div>
 </div>
+
 
