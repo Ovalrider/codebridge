@@ -1,8 +1,58 @@
-.example-card {
-    max-width: 400px;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap');
+
+mat-icon{
+  transform: scale(0.65);
+  vertical-align: middle;
+  margin-bottom: 1%;
+  opacity: 0.5;
 }
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
-}      
+mat-card-header{
+  margin-top: 1%;
+  flex-shrink: 0;
+  height: 100px;
+}
+mat-card-content{
+  margin-bottom: -15px;
+  flex-grow: 1;
+  overflow: auto;
+}
+mat-card-title{
+  margin-top: 2%;
+}
+mat-card-subtitle{
+  font-size: small ;
+}
+button{
+  font-weight: bold;
+}
+.title-text{
+  font-size: 20px;
+  font-weight: bold;
+}
+.subtitle-text{
+  font-size: 50px;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  max-width: 385px;
+  height:475px;
+}
+.header-image {
+  object-fit: cover;
+  height: 200px;
+  width: 100%;
+}
+.description{
+  flex:1;
+  overflow: hidden;
+}
+.button-content{
+  display: flex; 
+  align-items: center;
+}
+.button-content span{
+  margin-left: 5px;
+  font-family: 'Montseratt', sans-serif;
+}
   

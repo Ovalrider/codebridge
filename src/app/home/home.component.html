@@ -1,13 +1,31 @@
-<form [formGroup] = "searchForm" (ngSubmit)="onFormSubmit()">
-    <mat-form-field >
+<form [formGroup] = "searchForm" (ngSubmit)="onFormSubmit()" >
+    <p class="search-text-info">Filter by keywords</p>
+    <mat-form-field class="search-form">
         <mat-icon matIconPrefix>search</mat-icon>
-        <input matInput type="search" placeholder="search here" class="search-input" formControlName="searchValue">
+        <input matInput type="search" placeholder="Filter..." class="search-input" formControlName="searchValue">
     </mat-form-field>
 </form>
-<button (click)="toConsole()"> Click Me</button>
+<div class="results">
+    <p *ngIf="searchingFlag">Results: {{news!.count}}</p>
+    <hr>
+</div>
 <div *ngIf="news">
-    <div class="container"  *ngFor="let article of news!.results" >
-        <app-article [article]="article"></app-article>
+    <div class="container" >
+        <app-article *ngFor="let article of displayedNews" [article]="article"></app-article>
+    </div>
+    <div class="button-container" *ngIf="navigationFlag">
+        <button mat-button class="button" (click)="loadPrevArticles()" [disabled]="currentPos===0">
+            <span class="button-content">
+                <mat-icon>chevron_left</mat-icon>
+            Previous
+          </span>
+        </button>
+        <button mat-button class="button" (click)="loadNextArticles()" [disabled]="currentPos + NUM_OF_ARTICLES_PER_PAGE  >= news.results.length">
+            <span class="button-content">
+              Next
+            <mat-icon>chevron_right</mat-icon>
+          </span>
+        </button>
     </div>
 </div>
 

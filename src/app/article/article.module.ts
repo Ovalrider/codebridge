@@ -3,12 +3,12 @@ import { ArticleComponent } from './article.component';
 import { NgModule } from "@angular/core";
 import {MatButtonModule} from '@angular/material/button';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
-import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
-    imports:[MatCardModule, MatButtonModule,MatProgressBarModule, NgxSkeletonLoaderModule, CommonModule],
+    imports:[MatCardModule, MatButtonModule,MatProgressBarModule, CommonModule, MatIconModule],
     exports:[ArticleComponent],
     declarations:[ArticleComponent],
 })

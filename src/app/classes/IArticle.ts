@@ -8,6 +8,6 @@ export interface IArticle{
   published_at: string;
   updated_at: string;
   featured: boolean;
-  launches: any[]; // You can define an interface for launches if needed
+  launches: any[];
   events: any[];
 }
