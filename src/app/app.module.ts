@@ -9,6 +9,7 @@ import { ArticleComponent } from './article/article.component';
 import HomeModule from './home/home.module';
 import ArticleModule from './article/article.module';
 import { HttpClientModule } from '@angular/common/http';
+import { DialogContentComponent } from './dialog-content/dialog-content.component';
 
 @NgModule({
   declarations: [

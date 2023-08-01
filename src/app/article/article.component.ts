@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IArticle } from '../classes/IArticle';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { DialogContentComponent } from '../dialog-content/dialog-content.component';
 
 @Component({
   selector: 'app-article',
@@ -10,6 +12,8 @@ export class ArticleComponent implements OnInit{
 
   @Input() article!: IArticle
   stringDate !: String 
+  expanded : boolean = false
+  constructor( private dialog : MatDialog){}
   ngOnInit(){
     this.formatDate()
   }
@@ -30,5 +34,22 @@ export class ArticleComponent implements OnInit{
     }
 
     this.stringDate =formattedDate.replace(String(day), dayFormatted);
+  }
+  openModal() : void{
+    const dialogRef = this.dialog.open(DialogContentComponent,{
+      panelClass: 'fullscreen-dialog',
+      data:{
+        image_url: this.article.image_url,
+        title: this.article.title,
+        summary: this.article.summary
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+  expand() : void{
+    this.expanded = !this.expanded
   }
 }

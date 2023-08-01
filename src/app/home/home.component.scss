@@ -21,10 +21,12 @@ hr{
 .button-container{
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
+    flex-direction:column;
     justify-content: center;
-    gap: 1%;
+    column-gap: 1%;
+    row-gap: 5%;
     padding-bottom: 5%;
+    align-items: center;
 }
 .search-form{
     margin-bottom: 15px;
@@ -42,4 +44,7 @@ hr{
     margin-bottom: 45px;
     margin-left: 70px;
     font-weight: bold;
+}
+.pages-num{
+    vertical-align: middle;
 }

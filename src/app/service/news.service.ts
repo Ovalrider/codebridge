@@ -3,7 +3,7 @@ import { INews } from '../classes/INews';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/';
 
-const NUM_OF_ARTICLES_IN_REQUEST = 13
+const NUM_OF_ARTICLES_IN_REQUEST = 18
 @Injectable({
   providedIn: 'root'
 })

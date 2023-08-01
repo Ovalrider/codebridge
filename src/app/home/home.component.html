@@ -6,26 +6,30 @@
     </mat-form-field>
 </form>
 <div class="results">
-    <p *ngIf="searchingFlag">Results: {{news!.count}}</p>
+    <p *ngIf="searchingFlag">Results: {{totalFound}}</p>
     <hr>
 </div>
-<div *ngIf="news">
+<div *ngIf="totalFound">
     <div class="container" >
         <app-article *ngFor="let article of displayedNews" [article]="article"></app-article>
     </div>
-    <div class="button-container" *ngIf="navigationFlag">
+    
+    <div class="button-container" *ngIf="buttonNavigationFlag">
+        <label *ngIf="buttonNavigationFlag" class="pages-num">{{currentPos}}-{{currentPos+ NUM_OF_ARTICLES_PER_PAGE > totalNews.length ? totalNews.length : currentPos+ NUM_OF_ARTICLES_PER_PAGE}}</label>
+        <div>
         <button mat-button class="button" (click)="loadPrevArticles()" [disabled]="currentPos===0">
             <span class="button-content">
                 <mat-icon>chevron_left</mat-icon>
             Previous
           </span>
         </button>
-        <button mat-button class="button" (click)="loadNextArticles()" [disabled]="currentPos + NUM_OF_ARTICLES_PER_PAGE  >= news.results.length">
+        <button mat-button class="button" (click)="loadNextArticles()" [disabled]="currentPos + NUM_OF_ARTICLES_PER_PAGE  >= totalNews.length">
             <span class="button-content">
               Next
             <mat-icon>chevron_right</mat-icon>
           </span>
         </button>
+    </div>
     </div>
 </div>
 

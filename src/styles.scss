@@ -34,5 +34,22 @@ $codebridge-theme: mat.define-light-theme((
 @include mat.all-component-themes($codebridge-theme);
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap');
 
-html, body { height: 100%; }
+html, body { height: 100%;  }
 body { margin: 0; font-family: 'Montserrat', sans-serif; }
+body::-webkit-scrollbar{
+  display: none;
+}
+.highlight{
+  background-color: yellow;
+}
+.fullscreen-dialog {
+  max-width: 100% !important;
+  max-height: 100% !important;
+  width: 100%;
+  height: 100%;
+  overflow: hidden !important;
+}
+
+mat-card {
+  overflow-y: hidden !important;
+}

@@ -3,15 +3,15 @@
   <img mat-card-image src={{article.image_url}} alt="Photo placeholder" class="header-image">
   <mat-card-header>
     <mat-card-subtitle><mat-icon>calendar_today</mat-icon>{{stringDate}} </mat-card-subtitle>
-    <mat-card-title class="title-text">{{article.title}}</mat-card-title>
+    <mat-card-title class="title-text" [innerHTML]="article.title"></mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <p class="description">
-      {{article.summary | slice:0:100 }}{{ article.summary.length > 100 ? '...' : '' }}
-    </p>
+    <p class="description" [innerHTML]="article.summary.slice(0,100)">
+      <!-- {{article.summary | slice:0:100 }}{{ article.summary.length > 100 ? '...' : '' }} -->
+    <span *ngIf="article.summary.length > 0">...</span></p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button class="button">
+    <button mat-button class="button" (click)="openModal()">
       <span class="button-content">
         Read more
       <mat-icon>arrow_forward</mat-icon>
