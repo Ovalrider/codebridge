@@ -1,15 +1,16 @@
  <img [src]="data.image_url" alt="image placeholder" class="image-banner">
 <div class="container">
   <mat-card>
-    <mat-card-header>
+    <div class="custom-mat-header">
       <mat-card-title class="title-text">{{data.title}}</mat-card-title>
-    </mat-card-header>
+    </div>
     <mat-card-content>
-      <p>{{data.summary}} {{dummyText | slice:0:417}}.</p>
-      <p>{{dummyText | slice:0:597}}.</p>
+      <p>{{data.summary}}</p>
+      <p>{{dummyText | slice:0:417}}.</p>
+      <p>{{dummyText | slice:0:596}}.</p>
       <p>{{dummyText | slice:0:398}}.</p>
       <p>{{dummyText | slice:0:700}}.</p>
-      <p>{{dummyText | slice:0:800}}.</p>
+      <p>{{dummyText | slice:0:398}}.</p>
     </mat-card-content>
   </mat-card>
 </div>

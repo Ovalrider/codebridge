@@ -11,6 +11,7 @@ import { DialogContentComponent } from '../dialog-content/dialog-content.compone
 export class ArticleComponent implements OnInit{
 
   @Input() article!: IArticle
+  @Input() searchKeywords! : string[]
   stringDate !: String 
   expanded : boolean = false
   constructor( private dialog : MatDialog){}

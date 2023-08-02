@@ -11,7 +11,7 @@
 </div>
 <div *ngIf="totalFound">
     <div class="container" >
-        <app-article *ngFor="let article of displayedNews" [article]="article"></app-article>
+        <app-article *ngFor="let article of displayedNews" [article]="article" [searchKeywords]="searchValue.toLocaleLowerCase().trim().split(' ')"></app-article>
     </div>
     
     <div class="button-container" *ngIf="buttonNavigationFlag">

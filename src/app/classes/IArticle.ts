@@ -10,4 +10,5 @@ export interface IArticle{
   featured: boolean;
   launches: any[];
   events: any[];
+  priority : number;
 }

@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
       if (this.totalFound != 0){
         this.totalNews = news.results
         if (this.searchingFlag){
-          this.totalNews = this.filterArticles()
+          this.filterArticles()
         }
         this.displayedNews = this.totalNews.slice(this.currentPos,this.NUM_OF_ARTICLES_PER_PAGE)
         this.buttonNavigationFlag = true
@@ -59,45 +59,31 @@ export class HomeComponent implements OnInit {
     this.currentPos -= this.NUM_OF_ARTICLES_PER_PAGE
     this.displayedNews = this.totalNews.slice(this.currentPos,this.currentPos + this.NUM_OF_ARTICLES_PER_PAGE)
   }
-  filterArticles() : IArticle[] {
-    if (!this.totalNews) return []
-    const sortedArticles = this.totalNews.sort((a, b ) =>{
-      const titleMatchA = a.title.toLowerCase().includes(this.searchValue.toLowerCase())
-      const titleMatchB = b.title.toLowerCase().includes(this.searchValue.toLowerCase())
-      const summaryMatchA = a.summary.toLowerCase().includes(this.searchValue.toLowerCase())
-      const summaryMatchB = b.summary.toLowerCase().includes(this.searchValue.toLowerCase())
-
-      if (titleMatchA && !titleMatchB) return -1
-      if (!titleMatchA && titleMatchB) return 1
-      if (summaryMatchA && !summaryMatchB) return -1
-      if (!summaryMatchA && summaryMatchB) return 1 
-      return 0
-    })
-
-    const highlightedArticles = sortedArticles.map((article) =>{
-      return this.highlightSearchValue(article, this.searchValue)
-    })
-
-    return highlightedArticles
+  filterArticles() : void {
+    if (!this.totalNews) return
+    const searchValue = this.searchForm.value.searchValue?.toLowerCase() || '';
+    const keywords = searchValue.trim().split(' ')
+    if (!searchValue || keywords.length === 0) {
+      this.fetchData();
+    }else{
+      this.totalNews.forEach((article) =>{
+        article.priority = this.calculatePriority(article, keywords)
+      })
+      this.totalNews.sort((a, b) => b.priority - a.priority)
+    }
+    return
   }
-  highlightSearchValue(article : IArticle, searchValue : string) : any {
-    const titleMatchIndex = article.title.toLowerCase().indexOf(searchValue.toLowerCase())
-    const summaryMatchIndex = article.summary.toLowerCase().indexOf(searchValue.toLowerCase())
+  calculatePriority(article : IArticle, keywords : string[]) : number {
+    let priority = 0;
+    const title = article.title.toLowerCase();
+    const summary = article.summary.toLowerCase();
 
-    if (titleMatchIndex !==-1){
-      const highlightedText = article.title.substring(0, titleMatchIndex) +
-      `<span class="highlight">${article.title.substring(titleMatchIndex, titleMatchIndex + searchValue.length)}</span>` +
-      article.title.substring(titleMatchIndex + searchValue.length)
-      article.title = highlightedText
+    for (const keyword of keywords) {
+      const titleOccurrences = title.split(keyword).length - 1;
+      const summaryOccurrences = summary.split(keyword).length - 1;
+      priority += (titleOccurrences * 2) + summaryOccurrences;
     }
 
-    if (summaryMatchIndex !==-1){
-      const highlightedText = article.summary.substring(0, summaryMatchIndex) +
-      `<span class="highlight">${article.summary.substring(summaryMatchIndex, summaryMatchIndex + searchValue.length)}</span>` +
-      article.summary.substring(summaryMatchIndex + searchValue.length)
-      article.summary = highlightedText
-    }
-
-    return article
+    return priority;
   }
 }
