@@ -14,10 +14,13 @@ export class ArticleComponent implements OnInit{
   @Input() searchKeywords! : string[]
   stringDate !: String 
   expanded : boolean = false
+
   constructor( private dialog : MatDialog){}
+
   ngOnInit(){
     this.formatDate()
   }
+
   formatDate(): void{
     let date = new Date(this.article.published_at.slice(0,10))
     const timeFormat : Intl.DateTimeFormatOptions = { month: "long", day: "numeric", year: "numeric" };
@@ -36,6 +39,7 @@ export class ArticleComponent implements OnInit{
 
     this.stringDate =formattedDate.replace(String(day), dayFormatted);
   }
+
   openModal() : void{
     const dialogRef = this.dialog.open(DialogContentComponent,{
       panelClass: 'fullscreen-dialog',
@@ -49,8 +53,5 @@ export class ArticleComponent implements OnInit{
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
-  }
-  expand() : void{
-    this.expanded = !this.expanded
   }
 }

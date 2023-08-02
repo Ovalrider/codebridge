@@ -22,11 +22,11 @@ export class HomeComponent implements OnInit {
   searchingFlag : boolean = false
   currentPos : number = 0
   buttonNavigationFlag : boolean = false
+  
   constructor(private newsService : NewsService,  private fb : FormBuilder){}
   
   ngOnInit(): void {
     this.fetchData()
-    
   }
   fetchData() : void {
      this.newsService.getArticles(this.searchValue).subscribe((articles : INews) => {
@@ -49,7 +49,6 @@ export class HomeComponent implements OnInit {
     this.searchValue == '' ? this.searchingFlag = false : this.searchingFlag = true
     this.currentPos = 0
     this.fetchData()
-    
   }
   loadNextArticles(): void {
     this.currentPos += this.NUM_OF_ARTICLES_PER_PAGE
@@ -83,7 +82,6 @@ export class HomeComponent implements OnInit {
       const summaryOccurrences = summary.split(keyword).length - 1;
       priority += (titleOccurrences * 2) + summaryOccurrences;
     }
-
     return priority;
   }
 }
